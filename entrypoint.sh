@@ -43,18 +43,15 @@ cd "$PAGES_GEM_HOME"
 
 echo "::warning:: start to build"
 
-output_file=$(mktemp)
-
-$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" > "$output_file" 2>&1
-
-build_output=$(cat "$output_file")
+# Run the command, capturing both stdout and stderr to a variable
+build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1)"
 
 # Capture the exit code in a variable
 exit_code=$?
 
 # Check if the exit code indicates an error
 if [ $exit_code -ne 0 ]; then
-    echo "::error:: $build_output"
+    echo "::error:: $build_output"  # Print the captured output
 fi
 
-exit $exit_code
+echo "::warning:: finished build"
