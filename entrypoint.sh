@@ -51,7 +51,7 @@ exit_code=$?
 
 # Check if the exit code indicates an error
 if [ $exit_code -ne 0 ]; then
-    echo "::error:: $build_output"  # Print the captured output
+    echo "::error:: the error is $build_output"  # Print the captured output
 fi
 
 echo "::warning:: finished build"
