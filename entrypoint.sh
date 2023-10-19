@@ -42,7 +42,7 @@ fi
 cd "$PAGES_GEM_HOME"
 
 echo "::warning:: start to build"
-$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1
+output=$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1)
 
 # Capture the exit code in a variable
 exit_code=$?
