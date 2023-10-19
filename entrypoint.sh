@@ -40,4 +40,14 @@ else
 fi
 
 cd "$PAGES_GEM_HOME"
-$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY"
+
+# Run the command and capture the exit code and error output
+$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1
+
+# Capture the exit code in a variable
+exit_code=$?
+
+# Check if the exit code indicates an error
+if [ $exit_code -ne 0 ]; then
+    echo "::error:: $output exit: $exit_code"
+fi
