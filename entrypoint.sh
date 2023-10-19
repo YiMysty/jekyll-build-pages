@@ -52,3 +52,6 @@ exit_code=$?
 echo "::error:: exit_code is $exit_code and build output is $build_output"
 
 
+echo "===================================="
+
+exit $exit_code
