@@ -6,7 +6,7 @@
 #
 ####################################################################################################
 
-set -o errexit
+set -e
 
 SOURCE_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_SOURCE
 DESTINATION_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_DESTINATION
@@ -56,6 +56,5 @@ exit_code=$?
 if [ $exit_code -ne 0 ]; then
     echo "::error:: $output exit: $exit_code"
 fi
-
 
 echo "::warning:: finished build"
