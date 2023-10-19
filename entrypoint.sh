@@ -6,8 +6,6 @@
 #
 ####################################################################################################
 
-set -e
-
 SOURCE_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_SOURCE
 DESTINATION_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_DESTINATION
 PAGES_GEM_HOME=$BUNDLE_APP_CONFIG
@@ -44,10 +42,7 @@ fi
 cd "$PAGES_GEM_HOME"
 
 echo "::warning:: start to build"
-(
-    set +e
-    $GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1
-)
+$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1
 
 # Capture the exit code in a variable
 exit_code=$?
