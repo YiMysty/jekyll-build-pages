@@ -42,14 +42,19 @@ fi
 cd "$PAGES_GEM_HOME"
 
 echo "::warning:: start to build"
-output=$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1)
+
+output_file=$(mktemp)
+
+$GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" > "$output_file" 2>&1
+
+build_output=$(cat "$output_file")
 
 # Capture the exit code in a variable
 exit_code=$?
 
 # Check if the exit code indicates an error
 if [ $exit_code -ne 0 ]; then
-    echo "::error:: $output"
+    echo "::error:: $build_output"
 fi
 
 exit $exit_code
