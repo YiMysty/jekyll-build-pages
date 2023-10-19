@@ -49,7 +49,7 @@ exit_code=$?
 
 # Check if the exit code indicates an error
 if [ $exit_code -ne 0 ]; then
-    echo "::error:: $output exit: $exit_code"
+    echo "::error:: $output"
 fi
 
-echo "::warning:: finished build"
+exit $exit_code
