@@ -46,14 +46,9 @@ echo "::warning:: start to build"
 # Run the command, capturing both stdout and stderr to a variable
 build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY")"
 
-echo "$build_output 23333"
-
 # Capture the exit code in a variable
 exit_code=$?
 
-# Check if the exit code indicates an error
-if [ $exit_code -ne 0 ]; then
-    echo "::error:: the error is $build_output"  # Print the captured output
-fi
+echo "::error:: exit_code is $exit_code and build output is $build_output"
 
-echo "::warning:: finished build"
+
