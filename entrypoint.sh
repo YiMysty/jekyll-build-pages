@@ -18,6 +18,8 @@ if test -e "$SOURCE_DIRECTORY/Gemfile" && ! bundle check --dry-run --gemfile "$S
   echo "::warning:: github-pages can't satisfy your Gemfile's dependencies."
 fi
 
+echo "::warning:: github-pages can't satisfy your Gemfile's dependencies."
+
 # Set environment variables required by supported plugins
 export JEKYLL_ENV="production"
 export JEKYLL_GITHUB_TOKEN=$INPUT_TOKEN
