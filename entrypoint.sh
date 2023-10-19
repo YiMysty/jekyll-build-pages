@@ -44,7 +44,7 @@ cd "$PAGES_GEM_HOME"
 echo "::warning:: start to build"
 
 # Run the command, capturing both stdout and stderr to a variable
-build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1)"
+build_output="$(ehco $($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY"))"
 
 # Capture the exit code in a variable
 exit_code=$?
