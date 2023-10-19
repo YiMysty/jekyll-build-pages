@@ -43,6 +43,8 @@ fi
 
 cd "$PAGES_GEM_HOME"
 
+echo "::warning:: start to build"
+
 # Run the command and capture the exit code and error output
 $GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY" 2>&1
 
@@ -53,3 +55,5 @@ exit_code=$?
 if [ $exit_code -ne 0 ]; then
     echo "::error:: $output exit: $exit_code"
 fi
+
+echo "::warning:: finished build"
