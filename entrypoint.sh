@@ -16,8 +16,6 @@ if test -e "$SOURCE_DIRECTORY/Gemfile" && ! bundle check --dry-run --gemfile "$S
   echo "::warning:: github-pages can't satisfy your Gemfile's dependencies."
 fi
 
-echo "::warning:: github-pages can't satisfy your Gemfile's dependencies."
-
 # Set environment variables required by supported plugins
 export JEKYLL_ENV="production"
 export JEKYLL_GITHUB_TOKEN=$INPUT_TOKEN
@@ -41,16 +39,20 @@ fi
 
 cd "$PAGES_GEM_HOME"
 
-echo "::warning:: start to build"
-
 # Run the command, capturing both stdout and stderr to a variable
 build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY")"
 
-# Capture the exit code in a variable
+# Capture the exit code
 exit_code=$?
 
-encoded_string==$(echo "$build_output" | tr '\n' ' ' | tr -s ' ')
+if [ $exit_code -ne 0 ]; then
+  # URL encode the build_output
+  encoded_string=$(echo "$build_output" | tr '\n' ' ' | tr -s ' ')
+  echo "::error::$encoded_string"
+else
+  # Display the build_output
+  echo "$build_output"
+fi
 
-echo "::warning  $encoded_string"
-
+# Exit with the captured exit code
 exit $exit_code
