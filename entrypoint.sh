@@ -49,7 +49,7 @@ build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_D
 # Capture the exit code in a variable
 exit_code=$?
 
-encoded_string==$(echo "$build_output" | tr '\n' ' ')
+encoded_string==$(echo "$build_output" | tr '\n' '%0A')
 
 echo "::warning  $encoded_string"
 
