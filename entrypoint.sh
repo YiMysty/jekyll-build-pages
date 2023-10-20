@@ -49,8 +49,8 @@ build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_D
 # Capture the exit code in a variable
 exit_code=$?
 
-echo "::group::diagnostic information"
-echo $build_output
-echo "::endgroup::"
+encoded_string=$(echo "$build_output" | tr -d '\n' | tr ' ' '%20' | tr '$' '%24' | tr '&' '%26' | tr '#' '%23')
+
+echo "::warning  $encoded_string"
 
 exit $exit_code
